@@ -1,0 +1,161 @@
+.cart-header {
+  background-color: rgb(53, 53, 53);
+  height: 50px;
+  padding-top: 10px;
+  position: fixed;
+  width: 100%;
+}
+
+.cart {
+  border: none;
+  background-color: blue;
+  color: white;
+}
+
+.clear {
+  border: none;
+  background-color: red;
+  color: white;
+}
+
+.fruits {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 80px;
+  justify-content: center;
+}
+
+.fruit {
+  width: 350px;
+  height: 450px;
+  border: solid 1px rgba(97, 97, 97, 0.46);
+  margin: 80px 80px 80px 80px;
+  padding: 20px;
+}
+
+.btn:disabled{
+  background-color: rgba(97, 97, 97, 0.478);
+  color: white;
+}
+
+.btn {
+  border: none;
+  color: white;
+  background-color: rgb(0, 187, 255);
+  transition: 0.5s;
+}
+
+.modal-header {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px;
+  border-bottom: solid 1px rgba(154, 154, 154, 0.674);
+}
+
+.modal-window {
+  width: 50%;
+  margin: 0px 0px 0px 20%;
+  border: solid 1px rgba(154, 154, 154, 0.674);
+  border-radius: 20px;
+  padding: 10px;
+  margin: 100px 100px 0 100px;
+  border-radius: 25px;
+  margin-top: 10px;
+  background-color: white;
+  color: black;
+  border: 1px black;
+  opacity: 1;
+  z-index: 2;
+
+}
+
+.modal-btn {
+  border: none;
+  background-color: white;
+  font-size: 30px;
+}
+
+.modal-fruits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 20px;
+  margin: 20px 0px 20px 0px;
+  padding: 10px;
+  position: relative;
+  border-bottom: solid 1px rgba(154, 154, 154, 0.674);
+}
+
+.btn-plus {
+  border: none;
+  width: 30px;
+  height: 36px;
+}
+
+.btn-minus {
+  border: none;
+  width: 30px;
+  height: 36px;
+}
+
+.all-fruits {
+  display: flex;
+  width: 400px;
+}
+
+.input-fruits {
+  width: 400px;
+}
+
+.btn-close-fruits {
+  background-color: red;
+  border: solid 1px rgba(133, 133, 133, 0.753);
+  border-radius: 10px;
+  width: 40px;
+}
+
+.fruit-prise {
+  width: 150px;
+}
+
+.btn-close-modal {
+  border: solid 1px rgba(133, 133, 133, 0.753);
+  margin: 10px;
+  font-size: 150%;
+  border-radius: 10px;
+}
+
+.btn-order {
+  border: solid 1px rgba(133, 133, 133, 0.753);
+  margin: 10px;
+  font-size: 150%;
+  border-radius: 10px;
+  background-color: rgb(3, 146, 198);
+}
+
+.buttons {
+  display: flex;
+  justify-content: end;
+
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  align-items: center; 
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.cost {
+  width: 10%;
+}
