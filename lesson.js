@@ -14,12 +14,12 @@ let btnfruits = document.querySelectorAll(".btn")
 
 
 let products = [
-    {id: 0, name: 'Lemon', price: 0.5, cost: 0.5 },
-    {id: 1, name: 'Banana', price: 1, cost: 1 },
-    {id: 2, name: 'Orange', price: 1.5, cost: 1.5 },
-    {id: 3, name: 'Apple', price: 2, cost: 2 },
-    {id: 4, name: 'Pineapple', price: 6, cost: 6 },
-    {id: 5, name: 'Tangerine', price: 1.2, cost: 1.2 }
+    { id: 0, name: 'Lemon', price: 0.5, cost: 0.5 },
+    { id: 1, name: 'Banana', price: 1, cost: 1 },
+    { id: 2, name: 'Orange', price: 1.5, cost: 1.5 },
+    { id: 3, name: 'Apple', price: 2, cost: 2 },
+    { id: 4, name: 'Pineapple', price: 6, cost: 6 },
+    { id: 5, name: 'Tangerine', price: 1.2, cost: 1.2 }
 ]
 
 btnOpenModal.onclick = () => { modalWindow.classList.remove("hidden"); overlay.classList.remove("hidden"); };
@@ -38,29 +38,35 @@ function PlusMinus() {
     let btnMinus = document.querySelectorAll(".btn-minus")
     let btnPlus = document.querySelectorAll(".btn-plus")
     let input = document.querySelectorAll(".input-fruits")
-    console.log(btnMinus, btnPlus, input);
+    let cost = document.querySelectorAll(".cost-value")
+
 
     for (let i = 0; i < btnMinus.length; i++) {
         btnMinus[i].onclick = function () {
             input[i].value = parseInt(input[i].value) - 1
-            cost()
+            price() 
         }
 
     }
     for (let i = 0; i < btnPlus.length; i++) {
         btnPlus[i].onclick = function () {
             input[i].value = parseInt(input[i].value) + 1
-            cost()
+            price() 
         }
 
     }
     for (let i = 0; i < input.length; i++) {
 
     }
-  
+
+    for (let i = 0; i < cost.length; i++) {
+        console.log(cost[i].innerHTML);
+        price(cost[i].innerHTML, input[i].value)
+    }
 }
-function cost() {
-    product.cost = product.cost * input[i].value;
+// ошибка передаем не правельно параметри
+function price(cost,input) {
+    cost.innerHTML = cost.innerHTML * input;
 }
 function generateProduct(product) {
     fruitsModal.innerHTML +=
@@ -74,7 +80,7 @@ function generateProduct(product) {
     <button class="btn-plus " onclick = "">+</button>
     </div>
     <button class="btn-close-fruits" onclick = "">×</button>
-    <div class="cost">$${product.cost}</div>
+    <div class="cost">$<span class = "cost-value">${product.cost}</span></div>
     </div>
     `;
     console.log("готово");

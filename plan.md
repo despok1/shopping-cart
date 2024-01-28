@@ -4,3 +4,6 @@
 4 сделать нормально кнопки (подумать очень хорошо)
 5 подумать над let
 6 https://chat.openai.com/share/29ab407b-5305-4e9a-849f-d5e587609a01
+git add .
+git commit
+git push
