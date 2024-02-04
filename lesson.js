@@ -9,7 +9,7 @@ let InputLemon = document.querySelector(".input-lemon");
 let costLemon = document.querySelector(".cost-lemon")
 let costBanana = document.querySelector(".cost-banana")
 let costOrange = document.querySelector(".cost-orange")
-let totalPrise = document.querySelector(".total-prise")
+let totalPrice = document.querySelector(".total-prise")
 let btnfruits = document.querySelectorAll(".btn")
 
 
@@ -38,13 +38,15 @@ function PlusMinus() {
     let btnMinus = document.querySelectorAll(".btn-minus")
     let btnPlus = document.querySelectorAll(".btn-plus")
     let input = document.querySelectorAll(".input-fruits")
-    let cost = document.querySelectorAll(".cost-value")
     let price = document.querySelectorAll(".prise-value")
+    let cost = document.querySelectorAll(".cost-value")
+
 
     for (let i = 0; i < btnMinus.length; i++) {
         btnMinus[i].onclick = function () {
             input[i].value = parseInt(input[i].value) - 1
             priceF(cost[i], input[i].value, price[i])
+            totalPriceF(cost)
         }
 
     }
@@ -52,6 +54,7 @@ function PlusMinus() {
         btnPlus[i].onclick = function () {
             input[i].value = parseInt(input[i].value) + 1
             priceF(cost[i], input[i].value, price[i])
+            totalPriceF(cost)
         }
 
     }
@@ -62,6 +65,7 @@ function PlusMinus() {
     for (let i = 0; i < cost.length; i++) {
         console.log(cost[i].innerHTML);
         priceF(cost[i], input[i].value, price[i])
+        totalPriceF(cost)
     }
 }
 // ошибка передаем не правельно параметри
@@ -69,18 +73,42 @@ function priceF(cost, input, priceElement) {
     cost.textContent = (priceElement.innerHTML * input).toFixed(1);
 
 }
+function totalPriceF(costElement) {
+ 
+    let sum = 0;
+    for (let i = 0; i < costElement.length; i++) {
+   sum += Number(costElement[i].textContent)
+        totalPrice.textContent = sum;
+    }
+    
+}
+function removeProduct(event) {
+    let product = document.querySelectorAll(".product")
+    console.log(event.target);
+// от кнопки найти родительский блок
+    // for (let i = 0; i < product.length; i++) {
+    
+    // }
+ 
+        
+            product[i].remove()
+            btnfruits[i].disabled = false;
+        
+
+}
+
 function generateProduct(product) {
     fruitsModal.innerHTML +=
         `
-    <div>
+    <div class = "product">
     <div class="modal-fruits">
     <h4 class="fruit-prise">${product.name}(<span class ="prise-value">${product.price}</span>)</h4>
     <div class="all-fruits">
     <button class="btn-minus " onclick = "minus()">-</button>
-    <input class="input-fruits " type="number" value="1" data-id=${product.id}>
+    <input class="input-fruits " min = "0" type="number" value="1" data-id=${product.id}>
     <button class="btn-plus " onclick = "">+</button>
     </div>
-    <button class="btn-close-fruits" onclick = "">×</button>
+    <button class="btn-close-fruits" onclick = "removeProduct(event)">×</button>
     <div class="cost">$<span class = "cost-value">${product.cost}</span></div>
     </div>
     `;
