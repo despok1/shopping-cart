@@ -39,19 +39,19 @@ function PlusMinus() {
     let btnPlus = document.querySelectorAll(".btn-plus")
     let input = document.querySelectorAll(".input-fruits")
     let cost = document.querySelectorAll(".cost-value")
-
+    let price = document.querySelectorAll(".prise-value")
 
     for (let i = 0; i < btnMinus.length; i++) {
         btnMinus[i].onclick = function () {
             input[i].value = parseInt(input[i].value) - 1
-            price() 
+            priceF(cost[i], input[i].value, price[i])
         }
 
     }
     for (let i = 0; i < btnPlus.length; i++) {
         btnPlus[i].onclick = function () {
             input[i].value = parseInt(input[i].value) + 1
-            price() 
+            priceF(cost[i], input[i].value, price[i])
         }
 
     }
@@ -61,19 +61,20 @@ function PlusMinus() {
 
     for (let i = 0; i < cost.length; i++) {
         console.log(cost[i].innerHTML);
-        price(cost[i].innerHTML, input[i].value)
+        priceF(cost[i], input[i].value, price[i])
     }
 }
 // ошибка передаем не правельно параметри
-function price(cost,input) {
-    cost.innerHTML = cost.innerHTML * input;
+function priceF(cost, input, priceElement) {
+    cost.textContent = (priceElement.innerHTML * input).toFixed(1);
+
 }
 function generateProduct(product) {
     fruitsModal.innerHTML +=
         `
     <div>
     <div class="modal-fruits">
-    <h4 class="fruit-prise">${product.name}(${product.price})</h4>
+    <h4 class="fruit-prise">${product.name}(<span class ="prise-value">${product.price}</span>)</h4>
     <div class="all-fruits">
     <button class="btn-minus " onclick = "minus()">-</button>
     <input class="input-fruits " type="number" value="1" data-id=${product.id}>
