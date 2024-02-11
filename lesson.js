@@ -32,6 +32,7 @@ for (let i = 0; i < btnfruits.length; i++) {
         btnfruits[i].innerHTML = "Товар уже в корзине";
         btnfruits[i].disabled = true;
         PlusMinus()
+        allProduct()
     };
 }
 function PlusMinus() {
@@ -46,7 +47,8 @@ function PlusMinus() {
         btnMinus[i].onclick = function () {
             input[i].value = parseInt(input[i].value) - 1
             priceF(cost[i], input[i].value, price[i])
-            totalPriceF(cost)
+            calculateTotalPrice()
+            allProduct()
         }
 
     }
@@ -54,7 +56,8 @@ function PlusMinus() {
         btnPlus[i].onclick = function () {
             input[i].value = parseInt(input[i].value) + 1
             priceF(cost[i], input[i].value, price[i])
-            totalPriceF(cost)
+            calculateTotalPrice()
+            allProduct()
         }
 
     }
@@ -65,47 +68,63 @@ function PlusMinus() {
     for (let i = 0; i < cost.length; i++) {
         console.log(cost[i].innerHTML);
         priceF(cost[i], input[i].value, price[i])
-        totalPriceF(cost)
+        calculateTotalPrice()
+        allProduct()
     }
 }
-// ошибка передаем не правельно параметри
+
 function priceF(cost, input, priceElement) {
     cost.textContent = (priceElement.innerHTML * input).toFixed(1);
 
 }
-function totalPriceF(costElement) {
- 
+
+function calculateTotalPrice() {
+    let costElement = document.querySelectorAll(".cost-value")
+
     let sum = 0;
     for (let i = 0; i < costElement.length; i++) {
-   sum += Number(costElement[i].textContent)
-        totalPrice.textContent = sum;
-    }
-    
-}
-function removeProduct(event) {
-    let product = document.querySelectorAll(".product")
-    console.log(event.target);
-// от кнопки найти родительский блок
-    // for (let i = 0; i < product.length; i++) {
-    
-    // }
- 
-        
-            product[i].remove()
-            btnfruits[i].disabled = false;
-        
+        sum += Number(costElement[i].textContent)
 
+    }
+
+    totalPrice.textContent = sum;
 }
+
+
+function allProduct() {
+    let input = document.querySelectorAll(".input-fruits")
+    let cart = document.querySelector(".cart-value")
+    let sum = 0;
+    for (let i = 0; i < input.length; i++) {
+        sum += Number(input[i].value)
+
+    }
+    cart.textContent = "(" + sum + ")";
+}
+
+function removeProduct(event) {
+
+    let parent = event.target.parentNode;
+    parent.remove()
+
+    let id = parent.dataset.id;
+
+    btnfruits[id].innerHTML = "Add to cart";
+    btnfruits[id].disabled = false;
+    calculateTotalPrice()
+    allProduct()
+}
+
 
 function generateProduct(product) {
     fruitsModal.innerHTML +=
         `
-    <div class = "product">
-    <div class="modal-fruits">
+        <div class = "product" >
+        <div class="modal-fruits"  data-id=${product.id}>
     <h4 class="fruit-prise">${product.name}(<span class ="prise-value">${product.price}</span>)</h4>
     <div class="all-fruits">
     <button class="btn-minus " onclick = "minus()">-</button>
-    <input class="input-fruits " min = "0" type="number" value="1" data-id=${product.id}>
+    <input class="input-fruits " min = "0" type="number" value="1">
     <button class="btn-plus " onclick = "">+</button>
     </div>
     <button class="btn-close-fruits" onclick = "removeProduct(event)">×</button>
